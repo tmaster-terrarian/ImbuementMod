@@ -1,8 +1,0 @@
-{
-    "type": "imbuemod:test_furnace",
-    "ingredient": {
-      "item": "minecraft:stone"
-    },
-    "result": "minecraft:diamond",
-    "experience": 0.2
-}
