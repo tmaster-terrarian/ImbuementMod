@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "imbuemod",
+  "version": "${version}",
+  "name": "Imbuement Mod",
+  "description": "t",
+  "authors": [
+    "TmasterTerrarian"
+  ],
+  "contributors": [],
+  "contact": {},
+  "license": "CC0-1.0",
+  "icon": "assets/imbuemod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.imbuemod.ImbueMod"
+    ],
+    "client": [
+      "net.imbuemod.client.ImbueModClient"
+    ],
+    "server": []
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "accessWidener": "imbuemod.accesswidener"
+}
