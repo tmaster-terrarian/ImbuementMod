@@ -1,0 +1,35 @@
+{
+	"parent": "minecraft:block/block",
+	"ambientocclusion": false,
+	"textures": {
+		"head": "imbuemod:block/lumitop_head",
+		"stem": "imbuemod:block/lumitop_stem",
+		"particle": "#head"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 7],
+			"to": [9, 3.999, 9],
+			"faces": {
+				"north": {"uv": [10, 10, 12, 14], "texture": "#stem"},
+				"east": {"uv": [8, 10, 10, 14], "texture": "#stem"},
+				"south": {"uv": [14, 10, 16, 14], "texture": "#stem"},
+				"west": {"uv": [12, 10, 14, 14], "texture": "#stem"},
+				"up": {"uv": [12, 10, 10, 8], "texture": "#stem"},
+				"down": {"uv": [12, 8, 10, 10], "texture": "#stem"}
+			}
+		},
+		{
+			"from": [4, 3.999, 4],
+			"to": [12, 8, 12],
+			"faces": {
+				"north": {"uv": [8, 8, 16, 12], "texture": "#head"},
+				"east": {"uv": [0, 8, 8, 12], "texture": "#head"},
+				"south": {"uv": [8, 8, 16, 12], "texture": "#head"},
+				"west": {"uv": [0, 8, 8, 12], "texture": "#head"},
+				"up": {"uv": [16, 8, 8, 0], "texture": "#head"},
+				"down": {"uv": [16, 0, 8, 8], "texture": "#head"}
+			}
+		}
+	]
+}

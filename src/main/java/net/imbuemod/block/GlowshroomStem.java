@@ -12,14 +12,18 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-public class SmallGlowshroom extends Block {
+public class GlowshroomStem extends Block {
     
-    public SmallGlowshroom() {
-        super(FabricBlockSettings.of(Material.PLANT).breakByHand(true).breakByTool(FabricToolTags.AXES).sounds(BlockSoundGroup.FUNGUS).strength(0.2F, 0.2F));
+    public GlowshroomStem() {
+        super(FabricBlockSettings.of(Material.PLANT).breakByHand(true).breakByTool(FabricToolTags.AXES).sounds(BlockSoundGroup.FUNGUS).strength(0, 0));
     }
+
+    private static final VoxelShape SHAPE = VoxelShapes.union(
+    Block.createCuboidShape(4, 0, 4, 12, 16, 12)
+    );
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.cuboid(0f, 0.375f, 0f, 1f, 1f, 1f);
+        return SHAPE;
     }
 }

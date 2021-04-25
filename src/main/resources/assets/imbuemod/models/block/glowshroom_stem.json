@@ -1,0 +1,29 @@
+{
+    "parent": "minecraft:block/block",
+    "display": {
+        "gui": {
+            "rotation": [ 30, 135, 0 ],
+            "translation": [ 0, 0, 0],
+            "scale":[ 0.625, 0.625, 0.625 ]
+        }
+    },
+    "ambientocclusion": false,
+    "textures": {
+        "particle": "#wall_side",
+        "wall_top": "imbuemod:block/glowshroom_stem_top",
+        "wall_side": "imbuemod:block/glowshroom_stem_side"
+    },
+    "elements": [
+        {   "from": [ 4, 0, 4 ],
+            "to": [ 12, 16, 12 ],
+            "faces": {
+                "down":  { "texture": "#wall_top", "cullface": "down" },
+                "up":    { "texture": "#wall_top", "cullface": "up" },
+                "north": { "texture": "#wall_side" },
+                "south": { "texture": "#wall_side" },
+                "west":  { "texture": "#wall_side" },
+                "east":  { "texture": "#wall_side" }
+            }
+        }
+    ]
+}

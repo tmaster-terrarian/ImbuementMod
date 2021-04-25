@@ -1,19 +1,16 @@
 package net.imbuemod.block;
 
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.imbuemod.BlockRegistry;
-import net.imbuemod.WoodenCrateScreenHandler;
+import net.imbuemod.TestScreenHandler;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 
-public class WoodenCrateEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory {
+public class WoodenCrateEntity extends LootableContainerBlockEntity {
 	private DefaultedList<ItemStack> items = DefaultedList.ofSize(size(), ItemStack.EMPTY);
 
 	public WoodenCrateEntity() {
@@ -37,16 +34,11 @@ public class WoodenCrateEntity extends LootableContainerBlockEntity implements E
 
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return new WoodenCrateScreenHandler(syncId, playerInventory, this);
+		return new TestScreenHandler(syncId, playerInventory);
 	}
 
 	@Override
 	public int size() {
 		return 5 * 3;
-	}
-
-	@Override
-	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-		buf.writeBlockPos(pos);
 	}
 }

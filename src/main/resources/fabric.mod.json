@@ -1,15 +1,18 @@
 {
   "schemaVersion": 1,
   "id": "imbuemod",
-  "version": "${version}",
+  "version": "0.1.0-beta.0.1",
   "name": "Imbuement Mod",
-  "description": "t",
+  "description": "gamer",
   "authors": [
     "TmasterTerrarian"
   ],
-  "contributors": [],
+  "contributors": [
+    "EvolutioLunky (for ideas)",
+    "NinjaPhenix#0904"
+  ],
   "contact": {},
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/imbuemod/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -27,5 +30,13 @@
     "fabric": "*",
     "minecraft": "1.16.x"
   },
-  "accessWidener": "imbuemod.accesswidener"
+  "accessWidener": "imbuemod.accesswidener",
+  "custom": {
+    "modmenu": {
+      "links": {
+        "imbuemod.source_link": "https://github.com/tmaster-terrarian/ImbuementMod"
+      },
+      "badges": []
+    }
+  }
 }

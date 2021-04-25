@@ -13,12 +13,10 @@ public class WoodenCrateScreenHandler extends Generic3x3ContainerScreenHandler i
 	public WoodenCrateScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
 		super(syncId, playerInventory);
 		this.pos = buf.readBlockPos();
-
 	}
 	public WoodenCrateScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
 		super(syncId, playerInventory, inventory);
 		this.pos = BlockPos.ORIGIN;
-		
 	}
 	@Override
 	public BlockPos getPos() {

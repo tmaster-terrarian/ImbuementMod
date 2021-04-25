@@ -2,7 +2,10 @@
     "itemGroup.imbuemod.general": "Imbuement",
     
     "block.imbuemod.fabric_block": "Fabric Block",
+    "block.imbuemod.small_glowshroom": "Small Glowshroom",
     "block.imbuemod.wooden_crate": "Wooden Crate",
+    "block.imbuemod.lumitop": "Lumitop",
+    "block.imbuemod.glowshroom_stem": "Glowshroom Stem",
 
     "enchantment.imbuemod.freezing": "Freezing"
 }
