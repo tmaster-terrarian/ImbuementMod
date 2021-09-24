@@ -1,28 +1,34 @@
 package net.imbuemod;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.math.BlockPos;
 
 // kudos to NinjaPhenix#0904 on discord for the help
-public class TestScreenHandler extends ScreenHandler {
+public class TestScreenHandler extends ScreenHandler implements PositionedScreenHandler {
+	private final BlockPos pos;
 
     protected static Inventory inventory;
-    
+
     protected static ScreenHandlerType<?> handlerType;
 
     private static final int SLOT_SIZE = 18;
     private static final int NAME_FOREHEAD_HEIGHT = 17;
     private static final int SCREEN_HORIZONTAL_PADDING = 7;
 
-    public TestScreenHandler(int syncId, Inventory inventory) {
+    public TestScreenHandler(int syncId, Inventory inventory, PacketByteBuf buf) {
         super(handlerType, syncId);
+		this.pos = buf.readBlockPos();
         TestScreenHandler.handlerType = getType();
         final int slotWidth = 5;
         final int slotHeight = 3;
+        checkSize(inventory, slotWidth * slotHeight);
         final int visualWidth = SCREEN_HORIZONTAL_PADDING + 9 * SLOT_SIZE + SCREEN_HORIZONTAL_PADDING;
         final int slotStartX = visualWidth / 2 - slotWidth * SLOT_SIZE / 2;
         final int slotStartY = NAME_FOREHEAD_HEIGHT + 1;
@@ -45,13 +51,23 @@ public class TestScreenHandler extends ScreenHandler {
         }
     }
 
+    public TestScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+		super(handlerType, syncId);
+		this.pos = BlockPos.ORIGIN;
+	}
+
     @Override
     public boolean canUse(PlayerEntity player) {
         return true;
     }
-    
+
 	@Override
 	public ScreenHandlerType<?> getType() {
 		return ImbueMod.TEST_SCREEN_HANDLER;
 	}
+
+    @Override
+    public BlockPos getPos() {
+        return pos;
+    }
 }

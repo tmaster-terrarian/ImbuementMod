@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "imbuemod",
-  "version": "0.1.0-beta.0.1",
+  "version": "0.1.2-beta.1.0",
   "name": "Imbuement Mod",
   "description": "gamer",
   "authors": [
@@ -24,11 +24,13 @@
     ],
     "server": []
   },
-  "mixins": [],
+  "mixins": [
+    "imbuemod.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.11.3",
     "fabric": "*",
-    "minecraft": "1.16.x"
+    "minecraft": "1.17.x"
   },
   "accessWidener": "imbuemod.accesswidener",
   "custom": {

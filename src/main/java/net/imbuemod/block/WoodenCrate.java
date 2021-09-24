@@ -13,7 +13,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class WoodenCrate extends BlockWithEntity {
@@ -32,11 +31,6 @@ public class WoodenCrate extends BlockWithEntity {
 		}
 
 		return ActionResult.SUCCESS;
-	}
-
-	@Override
-	public BlockEntity createBlockEntity(BlockView world) {
-		return new WoodenCrateEntity();
 	}
 
 	@Override
@@ -61,5 +55,10 @@ public class WoodenCrate extends BlockWithEntity {
 	@Override
 	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
+	}
+
+	@Override
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new WoodenCrateEntity(pos, state);
 	}
 }

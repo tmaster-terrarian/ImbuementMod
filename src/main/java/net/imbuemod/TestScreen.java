@@ -10,28 +10,28 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class TestScreen extends HandledScreen<ScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier("imbuemod:textures/gui/container/generic5x3.png");
+    private static final Identifier BACKGROUND_TEXTURE = new Identifier("imbuemod:textures/gui/container/generic5x3.png");
 
     public TestScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
- 
+
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        client.getTextureManager().bindTexture(TEXTURE);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
     }
- 
+
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
         super.render(matrices, mouseX, mouseY, delta);
         drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
- 
+
     @Override
     protected void init() {
         super.init();

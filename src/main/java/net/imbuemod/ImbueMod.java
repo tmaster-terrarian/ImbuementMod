@@ -28,18 +28,19 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class ImbueMod implements ModInitializer {
-
+public class ImbueMod implements ModInitializer
+{
 	public static final String MOD_ID = "imbuemod";
 	public static final String MOD_NAME = "The Imbuement Mod";
 	public static final String CRATE_ID = MOD_ID + ":" + "wooden_crate";
 
 	public static final ScreenHandlerType<WoodenCrateScreenHandler> WOODEN_CRATE_SCREEN_HANDLER = ScreenHandlerRegistry.registerExtended(new Identifier(CRATE_ID), WoodenCrateScreenHandler::new);
-	public static final ScreenHandlerType<TestScreenHandler> TEST_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier(MOD_ID, "test_sc_handler"), TestScreenHandler::new);
+	public static final ScreenHandlerType<TestScreenHandler> TEST_SCREEN_HANDLER = ScreenHandlerRegistry.registerExtended(new Identifier(MOD_ID, "test_sc_handler"), TestScreenHandler::new);
 
 	public static Enchantment FREEZING_ENCHANTMENT;
 
-	void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher) {
+	void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher)
+	{
 		dispatcher.register(literal("xyzzy")
 		.executes(ctx -> {
 			ServerCommandSource source = ctx.getSource();
@@ -48,7 +49,8 @@ public class ImbueMod implements ModInitializer {
 		}));
 	}
 
-	public static LiteralCommandNode<?> register(CommandDispatcher<ServerCommandSource> dispatcher) { // You can also return a LiteralCommandNode for use with possible redirects
+	public static LiteralCommandNode<?> register(CommandDispatcher<ServerCommandSource> dispatcher) // You can also return a LiteralCommandNode for use with possible redirects
+	{
 		return dispatcher.register(literal("test_command")
 			.then(literal("foo")
 				.executes(ctx -> giveDebug(ctx)))
@@ -58,23 +60,25 @@ public class ImbueMod implements ModInitializer {
 						.executes(ctx -> broadcast(ctx.getSource(), ColorArgumentType.getColor(ctx, "color"), StringArgumentType.getString(ctx, "message")))))));
 	}
 
-	public static int broadcast(ServerCommandSource source, Formatting formatting, String message) throws CommandSyntaxException {
+	public static int broadcast(ServerCommandSource source, Formatting formatting, String message) throws CommandSyntaxException
+	{
 		final Text text = new LiteralText(message).formatted(formatting);
 
 		source.getMinecraftServer().getPlayerManager().broadcastChatMessage(text, MessageType.CHAT, source.getPlayer().getUuid());
 		return Command.SINGLE_SUCCESS; // Success
 	}
 
-	public static int giveDebug(CommandContext<ServerCommandSource> ctx) throws CommandSyntaxException {
+	public static int giveDebug(CommandContext<ServerCommandSource> ctx) throws CommandSyntaxException
+	{
 		final ServerCommandSource source = ctx.getSource();
 
 		final PlayerEntity self = source.getPlayer();
 
 		if(source.hasPermissionLevel(4)) {
-			self.inventory.insertStack(new ItemStack(Items.COMMAND_BLOCK));
-			self.inventory.insertStack(new ItemStack(Items.STRUCTURE_BLOCK));
-			self.inventory.insertStack(new ItemStack(Items.BARRIER));
-			self.inventory.insertStack(new ItemStack(Items.DEBUG_STICK));
+			self.getInventory().insertStack(new ItemStack(Items.COMMAND_BLOCK));
+			self.getInventory().insertStack(new ItemStack(Items.STRUCTURE_BLOCK));
+			self.getInventory().insertStack(new ItemStack(Items.BARRIER));
+			self.getInventory().insertStack(new ItemStack(Items.DEBUG_STICK));
 		}
 		else {
 			throw new SimpleCommandExceptionType(new TranslatableText("exception.insufficient_perms")).create();
@@ -83,7 +87,13 @@ public class ImbueMod implements ModInitializer {
 	}
 
 	@Override
-	public void onInitialize() {
+	public void onInitialize()
+	{
+		/*
+        Registry.register(Registry.RECIPE_SERIALIZER, ImbuingRecipeSerializer.ID,
+                ImbuingRecipeSerializer.INSTANCE);
+        Registry.register(Registry.RECIPE_TYPE, new Identifier("imbuing", Imbuing.Type.ID), Imbuing.Type.INSTANCE);
+		*/
 		ItemRegistry.register();
 		BlockRegistry.register();
 		FREEZING_ENCHANTMENT = Registry.register(

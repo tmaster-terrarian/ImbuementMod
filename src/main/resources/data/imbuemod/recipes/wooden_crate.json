@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "_O_",
+        "O O",
+        "_O_"
+    ],
+    "key": {
+        "_":
+        {
+            "tag": "minecraft:wooden_slabs"
+        },
+        "O":
+        {
+            "item": "imbuemod:driftwood"
+        }
+    },
+    "result": {
+        "item": "imbuemod:wooden_crate",
+        "count": 0
+    }
+}
